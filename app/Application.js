@@ -12,7 +12,12 @@ Ext.define('MyApp.Application', {
         'MyApp.controller.Main'
 
     ],
+    
+    views: [
+        
+    ],
+    
     launch:function(){
-        debugger;
+        // debugger;
     }
 });

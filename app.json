@@ -55,7 +55,8 @@
      *      ]
      */
     "requires": [
-        "font-awesome"
+        "font-awesome",
+        "ux"
     ],
 
     /**
@@ -221,18 +222,6 @@
             // Remove this entry to individually load sources from the framework.
             {
                 "path": "${framework.dir}/build/ext-all-rtl-debug.js"
-            }
-        ]
-    },
-
-    /**
-     * Settings specific to modern toolkit builds.
-     */
-    "modern": {
-        "js": [
-            // Remove this entry to individually load sources from the framework.
-            {
-                "path": "${framework.dir}/build/ext-modern-all-debug.js"
             }
         ]
     },
@@ -556,17 +545,7 @@
             "theme": "theme-triton",
             
             "sass": {
-                // "save": "classic/sass/save.scss"
-            }
-        },
-
-        "modern": {
-            "toolkit": "modern",
-            
-            "theme": "theme-triton",
-            
-            "sass": {
-                // "save": "modern/sass/save.scss"
+//                 "save": "classic/sass/save.scss"
             }
         }
     },
