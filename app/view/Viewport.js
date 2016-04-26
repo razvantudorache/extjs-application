@@ -13,7 +13,8 @@ Ext.define('MyApp.view.Viewport', {
 
     initComponent: function() {
         var me = this;
-        Ext.apply(me, {
+
+        Ext.applyIf(me, {
             layout: 'border',
             items: [
                 {
@@ -31,8 +32,7 @@ Ext.define('MyApp.view.Viewport', {
                 }
             ]
         });
-
-        me.callParent(arguments);
+        me.callParent();
     }
 
 });

@@ -13,8 +13,8 @@ Ext.define('MyApp.Application', {
 
     ],
     
-    views: [
-        
+    requires: [
+        'MyApp.view.GoogleView'
     ],
     
     launch:function(){
