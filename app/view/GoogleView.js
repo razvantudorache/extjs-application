@@ -4,9 +4,8 @@
 Ext.define('MyApp.view.GoogleView', {
     extend: 'Ext.ux.GMapPanel',
     alias: 'widget.googleview',
-    width: 450,
-    height: 250,
-    cls: 'test',
+    
+    cls: 'googleContainer',
 
     initComponent: function () {
         var me = this;
@@ -15,31 +14,44 @@ Ext.define('MyApp.view.GoogleView', {
             gmapType: 'map',
             center: {
                 lat: 42,
-                lng: 42
+                lng: 42,
+                marker: {
+                    title: 'Holmes Home'
+                }
             },
+            height: 500,
+            width: 500,
             mapOptions : {
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             },
             listeners: {
-                render: function() {
-                    navigator.geolocation.getCurrentPosition(me.getLocation);
-                }
-
+                render: {fn: me.renderHandler, scope: me}
             }
-
         });
 
-        me.callParent();
+
+        me.callParent(arguments);
+    },
+
+    renderHandler: function () {
+        var me = this;
+        navigator.geolocation.getCurrentPosition(me.getLocation);
     },
 
     getLocation: function (position) {
-        var map = Ext.ComponentQuery.query('googleview');
+
+        var map = Ext.ComponentQuery.query('googleview')[0].gmap;
         var lat = position.coords.latitude;
         var long = position.coords.longitude;
-        var currLocation = new google.maps.LatLng(lat,long);
+        var currentLocation = new google.maps.LatLng(lat,long);
 
-        map[0].gmap.setCenter(currLocation);
-        
-        
+        map.setCenter(currentLocation);
+        var marker = new google.maps.Marker({
+            position: currentLocation,
+            map: map,
+            title: 'You are here!'
+        });
+
+        map.setZoom(17);
     }
 });

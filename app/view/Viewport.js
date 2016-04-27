@@ -5,7 +5,7 @@ Ext.define('MyApp.view.Viewport', {
     extend: 'Ext.container.Viewport',
     
     requires: [
-      'MyApp.view.GoogleView'  
+      'MyApp.view.CenterContainer'  
     ],
     labelText: {
         title: 'Welcome'
@@ -18,21 +18,22 @@ Ext.define('MyApp.view.Viewport', {
             layout: 'border',
             items: [
                 {
-                    region: 'north',
-                    html: '<h2>' + me.labelText.title + '</h2>'
+                    cls: 'mainTitle',
+                    html: '<h2>' + me.labelText.title + '</h2>',
+                    region: 'north'
 
                 },
                 {
-                    region: 'center',
-                    xtype: 'googleview'
+                    xtype: 'centercontainer',
+                    region: 'center'
                 },
                 {
+                    xtype: 'bottomcontainer',
                     region: 'south'
-                    
                 }
             ]
         });
-        me.callParent();
+        me.callParent(arguments);
     }
 
 });

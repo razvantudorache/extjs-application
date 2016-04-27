@@ -13,8 +13,11 @@ Ext.define('MyApp.Application', {
 
     ],
     
-    requires: [
-        'MyApp.view.GoogleView'
+    views: [
+        'MyApp.view.Viewport',
+        'MyApp.view.CenterContainer',
+        'MyApp.view.GoogleView',
+        'MyApp.view.RightContainer'
     ],
     
     launch:function(){
