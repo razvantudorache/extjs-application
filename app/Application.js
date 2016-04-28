@@ -14,10 +14,7 @@ Ext.define('MyApp.Application', {
     ],
     
     views: [
-        'MyApp.view.Viewport',
-        'MyApp.view.CenterContainer',
-        'MyApp.view.GoogleView',
-        'MyApp.view.RightContainer'
+        'MyApp.view.Viewport'
     ],
     
     launch:function(){

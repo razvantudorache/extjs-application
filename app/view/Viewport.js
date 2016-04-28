@@ -4,32 +4,18 @@
 Ext.define('MyApp.view.Viewport', {
     extend: 'Ext.container.Viewport',
     
-    requires: [
-      'MyApp.view.CenterContainer'  
+    reguires: [
+      'My.view.MainView'  
     ],
-    labelText: {
-        title: 'Welcome'
-    },
 
     initComponent: function() {
         var me = this;
 
         Ext.applyIf(me, {
-            layout: 'border',
+            layout: 'fit',
             items: [
                 {
-                    cls: 'mainTitle',
-                    html: '<h2>' + me.labelText.title + '</h2>',
-                    region: 'north'
-
-                },
-                {
-                    xtype: 'centercontainer',
-                    region: 'center'
-                },
-                {
-                    xtype: 'bottomcontainer',
-                    region: 'south'
+                    xtype: 'mainview'
                 }
             ]
         });

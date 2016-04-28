@@ -8,12 +8,11 @@ Ext.define('MyApp.view.CommentPanel', {
     emptyText: 'no data',
 
     initComponent: function () {
-        debugger;
         var me = this;
         me.template = new Ext.XTemplate(
             '<tpl for=".">' +
                 '<div class="item">' +
-                    '<span>{dateComment}</span>' +
+                    '<span style="display: block">{dateComment}</span>' +
                     '<span>{comment}</span>' +
                 '</div>' +
             '</tpl>'

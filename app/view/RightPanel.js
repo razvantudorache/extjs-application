@@ -1,9 +1,9 @@
 /**
  * Created by Razvan on 27.04.2016.
  */
-Ext.define('MyApp.view.RightContainer', {
-    extend: 'Ext.container.Container',
-    alias: 'widget.rightcontainer',
+Ext.define('MyApp.view.RightPanel', {
+    extend: 'Ext.panel.Panel',
+    alias: 'widget.rightpanel',
 
     labelText: {
         title: 'Details'
@@ -13,7 +13,6 @@ Ext.define('MyApp.view.RightContainer', {
         var me = this;
 
         Ext.apply(me, {
-            layout: 'hbox',
             items: [
                 {
                     html: '<h1>' + me.labelText.title + '</h1>',
