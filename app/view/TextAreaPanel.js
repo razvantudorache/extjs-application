@@ -30,9 +30,21 @@ Ext.define('MyApp.view.TextAreaPanel', {
                 items: [
                     {
                         xtype: 'button',
-                        text: 'Send the comment',
+                        text: 'Post the comment',
                         widht: '100%',
-                        height: 30
+                        height: 30,
+                        scope: me,
+                        handler: function () {
+                            debugger;
+                            var me = this;
+                            var value = me.down('textarea').getValue();
+                            var record = {
+                                dateComment: '2016.02.03',
+                                comment: value
+                            };
+                            var commentPanel = me.mainParent.down('commentpanel').down('dataview').store.add(record);
+                            me.mainParent.down('commentpanel').down('dataview').store.reload();
+                        }
                     }
                 ]
             }]

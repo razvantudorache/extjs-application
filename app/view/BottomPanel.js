@@ -24,7 +24,8 @@ Ext.define('MyApp.view.BottomPanel', {
                 {
                     xtype: 'textareapanel',
                     layout: 'hbox',
-                    flex: 1
+                    flex: 1,
+                    mainParent: me
                 }
             ]
         });

@@ -28,6 +28,7 @@ Ext.define('MyApp.view.CommentPanel', {
                     store: me.initStore(),
                     itemSelector: 'div.item',
                     emptyText: me.emptyText,
+                    scrollbale: true,
                     deferEmptyText: false
                 }
             ]

@@ -10,6 +10,9 @@ Ext.define('MyApp.view.GoogleView', {
     initComponent: function () {
         var me = this;
 
+        me.infoMessage = "";
+        me.service = "";
+
         Ext.apply(me, {
             gmapType: 'map',
             center: {
