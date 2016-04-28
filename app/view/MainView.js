@@ -17,6 +17,8 @@ Ext.define('My.view.MainView', {
         detailsTitle: 'Details'
     },
 
+    cls: 'mainView',
+
     initComponent: function () {
         var me = this;
 
