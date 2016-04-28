@@ -5,7 +5,7 @@ Ext.define('MyApp.view.Viewport', {
     extend: 'Ext.container.Viewport',
     
     reguires: [
-      'My.view.MainView'  
+      'MyApp.view.MainView'  
     ],
 
     initComponent: function() {

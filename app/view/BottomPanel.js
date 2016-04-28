@@ -4,25 +4,27 @@
 Ext.define('MyApp.view.BottomPanel', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.bottompanel',
-
-    labelText: {
-        title: 'Comments'
-    },
+    
+    requires: [
+        'MyApp.view.TextAreaPanel',
+        'MyApp.view.CommentPanel'
+    ],
 
     initComponent: function () {
         var me = this;
-        Ext.applyIf(me, {
-            layout: 'hbox',
+        Ext.apply(me, {
+            layout: 'vbox',
             items: [
                 {
                     xtype: 'commentpanel',
                     url: 'resources/CommentPanel.json',
-                    flex: 2
+                    flex: 1
+
                 },
                 {
-                    xtype: 'textarea',
-                    width: '100%',
-                    height: '100%'
+                    xtype: 'textareapanel',
+                    layout: 'hbox',
+                    flex: 1
                 }
             ]
         });

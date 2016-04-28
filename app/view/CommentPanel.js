@@ -5,6 +5,7 @@ Ext.define('MyApp.view.CommentPanel', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.commentpanel',
 
+    cls: 'commentPanel',
     emptyText: 'no data',
 
     initComponent: function () {
@@ -19,6 +20,7 @@ Ext.define('MyApp.view.CommentPanel', {
         );
 
         Ext.apply(me,{
+            width: '100%',
             items: [
                 {
                     xtype: 'dataview',

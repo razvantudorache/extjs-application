@@ -1,7 +1,7 @@
 /**
  * Created by Razvan on 28.04.2016.
  */
-Ext.define('My.view.MainView', {
+Ext.define('MyApp.view.MainView', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.mainview',
 
@@ -52,7 +52,7 @@ Ext.define('My.view.MainView', {
                     title: me.labelText.commentsTitle,
                     region: 'south',     // position for region
                     xtype: 'bottompanel',
-                    height: 200
+                    height: 285
                 },{
                     title: me.labelText.detailsTitle,
                     xtype: 'rightpanel',
