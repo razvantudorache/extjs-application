@@ -3,9 +3,10 @@
  */
 Ext.define('MyApp.view.Viewport', {
     extend: 'Ext.container.Viewport',
-    
-    reguires: [
-      'MyApp.view.MainView'  
+
+    requires: [
+        'MyApp.view.MainView',
+        'MyApp.singleton.Singleton'
     ],
 
     initComponent: function() {

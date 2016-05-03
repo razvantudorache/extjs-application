@@ -35,7 +35,7 @@ Ext.define('MyApp.view.TextAreaPanel', {
                         height: 30,
                         scope: me,
                         handler: function () {
-                            debugger;
+                            // debugger;
                             var me = this;
                             var value = me.down('textarea').getValue();
                             var record = {

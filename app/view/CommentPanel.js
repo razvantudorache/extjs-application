@@ -5,6 +5,9 @@ Ext.define('MyApp.view.CommentPanel', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.commentpanel',
 
+    requires: [
+        'MyApp.store.CommentPanel'
+    ],
     cls: 'commentPanel',
     emptyText: 'no data',
 
