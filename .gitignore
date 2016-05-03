@@ -3,5 +3,4 @@ build
 ext
 overrides
 packages
-resources
 .idea
