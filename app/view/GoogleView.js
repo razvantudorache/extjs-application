@@ -92,6 +92,7 @@ Ext.define('MyApp.view.GoogleView', {
         for (var i = 0, result; result = results[i]; i++) {
             Ext.Msg.alert('Info', 'We found ' + results.length + ' hotels for you.');
             me.addMarker(result);
+
         }
     },
 
@@ -108,11 +109,38 @@ Ext.define('MyApp.view.GoogleView', {
             }
         });
 
+
+
         google.maps.event.addListener(marker, 'click', function() {
             me.service.getDetails(place, function(result, status) {
-                // debugger;
-                // me.infoWindow.setContent(result.name);
-                // me.infoWindow.open(me.gmap, marker);
+debugger;       me.infoWindow.close();
+                var data = {
+                    "name": result.name ,
+                    "address": result.formatted_address,
+                    "phone": result.formatted_phone_number,
+                    "openNow": ((typeof result.opening_hours.open_now !== 'undefined') ? result.opening_hours.open_now : ""),
+                    "openingHours": (result.opening_hours.weekday_text ? result.opening_hours.weekday_text : ""),
+                    "website": result.website,
+                    "photos": (result.photos ? result.photos : ""),
+                    "visited": 1,
+                    "rating": result.rating,
+                    "lat": result.geometry.location.lat(),
+                    "lng": result.geometry.location.lng()
+                };
+                Ext.Ajax.request({
+                    method: 'POST',
+                    headers: { "Content-Type": "application/json" },
+                    url: '/insertData',
+                    data: data,
+                    success: function (response) {
+                        debugger;
+                    },
+                    error: function () {
+                        debugger;
+                    }
+                });
+                me.infoWindow.setContent(result.name);
+                me.infoWindow.open(me.gmap, marker);
             });
         });
     }

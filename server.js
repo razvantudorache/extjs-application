@@ -1,12 +1,20 @@
   var express         = require('./packages/node_modules/express');
   var app             = express();
+  var mongoConnection = require('./server-db.js');
+  var insertData   = require('./model/InsertData.js');
   
   app.use(express.static(__dirname));
-  
- //  var connection=mySqlConnection.createConnection();
- // // var dbName=mySqlConnection.getDbName();
 
- // redirecting to home page 
+  
+  mongoConnection.connectToServer(function (err) {
+    var db = mongoConnection.getDb();
+
+    app.post('/insertData', function (req, res) {
+      
+      insertData.insertData(db, req, res);
+    });
+  });
+  
   app.get('/', function (req, res) {
   	 res.sendFile(__dirname+"\\index.html");
   });
