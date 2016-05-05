@@ -2,9 +2,10 @@
   var app             = express();
   var mongoConnection = require('./server-db.js');
   var insertData   = require('./model/InsertData.js');
+  var bodyParser = require('body-parser');
   
   app.use(express.static(__dirname));
-
+  app.use(bodyParser.json());
   
   mongoConnection.connectToServer(function (err) {
     var db = mongoConnection.getDb();

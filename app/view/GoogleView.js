@@ -9,7 +9,7 @@ Ext.define('MyApp.view.GoogleView', {
 
     initComponent: function () {
         var me = this;
-
+        var lat =null;
         Ext.apply(me, {
             gmapType: 'map',
             center: {
@@ -35,16 +35,20 @@ Ext.define('MyApp.view.GoogleView', {
 
     renderHandler: function () {
         var me = this;
+        MyApp.singleton.Singleton.setComponent(me);
         navigator.geolocation.getCurrentPosition(me.getLocation);
     },
 
     getLocation: function (position) {
 
+        var me = MyApp.singleton.Singleton.getComponent();
         var gmap = Ext.ComponentQuery.query('googleview')[0].gmap;
         var lat = position.coords.latitude;
         var long = position.coords.longitude;
         var currentLocation = new google.maps.LatLng(lat,long);
 
+        me.lat = lat;
+        me.lng = long;
         gmap.setCenter(currentLocation);
         var marker = new google.maps.Marker({
             position: currentLocation,
@@ -86,11 +90,11 @@ Ext.define('MyApp.view.GoogleView', {
         var me = MyApp.singleton.Singleton.getComponent();
 
         if (status !== google.maps.places.PlacesServiceStatus.OK) {
-            Ext.Msg.alert('Info', 'No hotels found in your area. Please navigate.');
+            // Ext.Msg.alert('Info', 'No hotels found in your area. Please navigate.');
             return;
         }
         for (var i = 0, result; result = results[i]; i++) {
-            Ext.Msg.alert('Info', 'We found ' + results.length + ' hotels for you.');
+            // Ext.Msg.alert('Info', 'We found ' + results.length + ' hotels for you.');
             me.addMarker(result);
 
         }
@@ -113,30 +117,30 @@ Ext.define('MyApp.view.GoogleView', {
 
         google.maps.event.addListener(marker, 'click', function() {
             me.service.getDetails(place, function(result, status) {
-debugger;       me.infoWindow.close();
+                me.infoWindow.close();
+
                 var data = {
-                    "name": result.name ,
-                    "address": result.formatted_address,
-                    "phone": result.formatted_phone_number,
-                    "openNow": ((typeof result.opening_hours.open_now !== 'undefined') ? result.opening_hours.open_now : ""),
-                    "openingHours": (result.opening_hours.weekday_text ? result.opening_hours.weekday_text : ""),
-                    "website": result.website,
-                    "photos": (result.photos ? result.photos : ""),
-                    "visited": 1,
-                    "rating": result.rating,
-                    "lat": result.geometry.location.lat(),
-                    "lng": result.geometry.location.lng()
+                    name: Ext.isDefined(result.name) ? result.name : "" ,
+                    address: Ext.isDefined(result.formatted_address) ? result.formatted_address : "",
+                    phone: Ext.isDefined(result.formatted_phone_number) ? result.formatted_phone_number : "",
+                    openNow: Ext.isDefined(result.opening_hours) ? result.opening_hours.open_now : "",
+                    openingHours: Ext.isDefined(result.opening_hours) ? result.opening_hours.weekday_text : "",
+                    website: Ext.isDefined(result.website) ? result.website : "",
+                    photos: Ext.isDefined(result.photos) ? result.photos : "",
+                    visited: 1,
+                    rating: Ext.isDefined(result.rating) ? result.rating : "",
+                    lat: Ext.isDefined(result.geometry) ? result.geometry.location.lat() : "",
+                    lng: Ext.isDefined(result.geometry) ? result.geometry.location.lng() : "",
+                    comments: []
                 };
+                
                 Ext.Ajax.request({
                     method: 'POST',
                     headers: { "Content-Type": "application/json" },
                     url: '/insertData',
-                    data: data,
+                    params: Ext.JSON.encode(data),
                     success: function (response) {
-                        debugger;
-                    },
-                    error: function () {
-                        debugger;
+                        //debugger;
                     }
                 });
                 me.infoWindow.setContent(result.name);
