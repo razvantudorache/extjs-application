@@ -1,7 +1,7 @@
 /**
  * Created by Razvan on 04.05.2016.
  */
-exports.insertData = function (db, req, res) {
+exports.insertHotel = function (db, req, res) {
 
     var data = req.body;
     
@@ -27,8 +27,11 @@ exports.insertData = function (db, req, res) {
         {new: true, upsert: true}
         ,
         function (error, response) {
-            console.log(response);
-            res.json(response);
+            var data = {
+                lat: response.value.lat,
+                lng: response.value.lng
+            };
+            res.json(data);
         }
     );
 };

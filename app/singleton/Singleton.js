@@ -5,11 +5,21 @@ Ext.define('MyApp.singleton.Singleton', {
     singleton: true,
     
     component: null,
+    coords: {},
     
     setComponent: function (value) {
-        component = value;
+        mainComponent = value;
     },
     getComponent: function () {
-        return component;
+        return mainComponent;
+    },
+    setCoords: function (lat,lng) {
+        coords = {
+            lat: lat,
+            lng: lng
+        }
+    },
+    getCoords: function () {
+        return coords;
     }
 });

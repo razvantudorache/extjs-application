@@ -45,20 +45,27 @@ Ext.define('MyApp.view.MainView', {
                     xtype: 'centerpanel',
                     region: 'center',
                     layout: 'fit',
+                    mainView: me,
                     flex: 2,
                     collapsible: false
                 },
+                // {
+                //     title: me.labelText.commentsTitle,
+                //     region: 'south',     // position for region
+                //     xtype: 'bottompanel',
+                //     height: 285,
+                //     collapsible: false,
+                //     collapsed: true
+                // },
                 {
-                    title: me.labelText.commentsTitle,
-                    region: 'south',     // position for region
-                    xtype: 'bottompanel',
-                    height: 285
-                },{
                     title: me.labelText.detailsTitle,
                     xtype: 'rightpanel',
                     region:'east',
+                    url: '/getHotel',
                     flex: 1,
-                    collapsible: true
+                    hideCollapseTool: true,
+                    floatable: false,
+                    collapsed: true
                 }
             ]
         });

@@ -9,7 +9,7 @@ Ext.define('MyApp.view.GoogleView', {
 
     initComponent: function () {
         var me = this;
-        var lat =null;
+
         Ext.apply(me, {
             gmapType: 'map',
             center: {
@@ -35,20 +35,19 @@ Ext.define('MyApp.view.GoogleView', {
 
     renderHandler: function () {
         var me = this;
-        MyApp.singleton.Singleton.setComponent(me);
+
         navigator.geolocation.getCurrentPosition(me.getLocation);
     },
 
     getLocation: function (position) {
 
-        var me = MyApp.singleton.Singleton.getComponent();
+
         var gmap = Ext.ComponentQuery.query('googleview')[0].gmap;
         var lat = position.coords.latitude;
         var long = position.coords.longitude;
         var currentLocation = new google.maps.LatLng(lat,long);
-
-        me.lat = lat;
-        me.lng = long;
+        
+        MyApp.singleton.Singleton.setCoords(lat,long);
         gmap.setCenter(currentLocation);
         var marker = new google.maps.Marker({
             position: currentLocation,
@@ -137,10 +136,15 @@ Ext.define('MyApp.view.GoogleView', {
                 Ext.Ajax.request({
                     method: 'POST',
                     headers: { "Content-Type": "application/json" },
-                    url: '/insertData',
+                    url: '/insertHotel',
                     params: Ext.JSON.encode(data),
                     success: function (response) {
-                        //debugger;
+                        var rightPanel = me.mainView.down('rightpanel');
+                        rightPanel.params = Ext.JSON.decode(response.responseText);
+                        rightPanel.storeReference.load({
+                            params: rightPanel.params
+                        });
+                        rightPanel.expand();
                     }
                 });
                 me.infoWindow.setContent(result.name);

@@ -30,5 +30,11 @@ Ext.define('MyApp.view.BottomPanel', {
             ]
         });
         me.callParent(arguments);
+    },
+
+    expand: function () {
+        var me = this;
+        var coords = MyApp.singleton.Singleton.getCoords();
+        me.callParent();
     }
 });

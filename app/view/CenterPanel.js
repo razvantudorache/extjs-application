@@ -15,7 +15,8 @@ Ext.define('MyApp.view.CenterPanel', {
         Ext.apply(me, {
             items: [
                 {
-                    xtype: 'googleview'
+                    xtype: 'googleview',
+                    mainView: me.mainView
                 }
             ]
         });
