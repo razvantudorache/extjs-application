@@ -12,6 +12,7 @@ Ext.define('MyApp.view.RightPanel', {
         title: 'Details'
     },
     emptyText: 'No Data',
+    cls: 'detailsCls',
 
     initComponent: function () {
         var me = this;

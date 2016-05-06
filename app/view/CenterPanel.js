@@ -6,17 +6,27 @@ Ext.define('MyApp.view.CenterPanel', {
     alias: 'widget.centerpanel',
 
     requires: [
-        'MyApp.view.GoogleView'
+        'MyApp.view.GoogleView',
+        'MyApp.view.PoiCombo'
     ],
     
     initComponent: function () {
         var me = this;
 
         Ext.apply(me, {
+           layout: 'anchor',
             items: [
                 {
+                    xtype: 'poicombobox',
+                    mainParent: me,
+                    displayField: 'title',
+                    valueField: 'value'
+                }
+                ,
+                {
                     xtype: 'googleview',
-                    mainView: me.mainView
+                    mainView: me.mainView,
+                    anchor: '100% 100%'
                 }
             ]
         });

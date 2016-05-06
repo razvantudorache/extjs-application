@@ -5,7 +5,7 @@ exports.insertHotel = function (db, req, res) {
 
     var data = req.body;
     
-    db.collection('hotels').findAndModify(
+    db.collection(data.table).findAndModify(
         {name: data.name}, //query
         [], //sort
         {
@@ -29,7 +29,8 @@ exports.insertHotel = function (db, req, res) {
         function (error, response) {
             var data = {
                 lat: response.value.lat,
-                lng: response.value.lng
+                lng: response.value.lng,
+                table: response.value.table
             };
             res.json(data);
         }

@@ -19,8 +19,6 @@ Ext.define('MyApp.view.GoogleView', {
                     title: 'Holmes Home'
                 }
             },
-            height: 500,
-            width: 500,
             mapOptions : {
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             },
@@ -35,7 +33,7 @@ Ext.define('MyApp.view.GoogleView', {
 
     renderHandler: function () {
         var me = this;
-
+        me.poi = "hotels";
         navigator.geolocation.getCurrentPosition(me.getLocation);
     },
 
@@ -79,8 +77,8 @@ Ext.define('MyApp.view.GoogleView', {
 
         var mainComponent = MyApp.singleton.Singleton.getComponent();
         var request = {
-            bounds: map.getBounds(),
-            keyword: 'hotels'
+            bounds: mainComponent.gmap.getBounds(),
+            keyword: mainComponent.poi
         };
         mainComponent.service.radarSearch(request, mainComponent.callback);
     },
@@ -88,12 +86,11 @@ Ext.define('MyApp.view.GoogleView', {
     callback: function (results, status) {
         var me = MyApp.singleton.Singleton.getComponent();
 
+
         if (status !== google.maps.places.PlacesServiceStatus.OK) {
-            // Ext.Msg.alert('Info', 'No hotels found in your area. Please navigate.');
             return;
         }
         for (var i = 0, result; result = results[i]; i++) {
-            // Ext.Msg.alert('Info', 'We found ' + results.length + ' hotels for you.');
             me.addMarker(result);
 
         }
@@ -106,9 +103,9 @@ Ext.define('MyApp.view.GoogleView', {
             map: me.gmap,
             position: place.geometry.location,
             icon: {
-                url: 'resources/hotel.png',
+                url: 'resources/' + me.poi + '.png',
                 anchor: new google.maps.Point(10, 10),
-                scaledSize: new google.maps.Size(30, 30)
+                scaledSize: new google.maps.Size(45, 45)
             }
         });
 
@@ -119,6 +116,7 @@ Ext.define('MyApp.view.GoogleView', {
                 me.infoWindow.close();
 
                 var data = {
+                    table: me.poi,
                     name: Ext.isDefined(result.name) ? result.name : "" ,
                     address: Ext.isDefined(result.formatted_address) ? result.formatted_address : "",
                     phone: Ext.isDefined(result.formatted_phone_number) ? result.formatted_phone_number : "",
