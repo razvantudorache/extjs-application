@@ -10,6 +10,8 @@ Ext.define('MyApp.view.GoogleView', {
     initComponent: function () {
         var me = this;
 
+        me.markers = [];
+
         Ext.apply(me, {
             gmapType: 'map',
             center: {
@@ -33,7 +35,7 @@ Ext.define('MyApp.view.GoogleView', {
 
     renderHandler: function () {
         var me = this;
-        me.poi = "hotels";
+        me.poi = "hotel";
         navigator.geolocation.getCurrentPosition(me.getLocation);
     },
 
@@ -44,7 +46,7 @@ Ext.define('MyApp.view.GoogleView', {
         var lat = position.coords.latitude;
         var long = position.coords.longitude;
         var currentLocation = new google.maps.LatLng(lat,long);
-        
+
         MyApp.singleton.Singleton.setCoords(lat,long);
         gmap.setCenter(currentLocation);
         var marker = new google.maps.Marker({
@@ -90,36 +92,43 @@ Ext.define('MyApp.view.GoogleView', {
         if (status !== google.maps.places.PlacesServiceStatus.OK) {
             return;
         }
+
+        //reset the previous markers
+        if (me.selected) {
+            me.setMapOnAll(null);
+            me.markers = [];
+            me.selected = false;
+        }
+
         for (var i = 0, result; result = results[i]; i++) {
             me.addMarker(result);
 
         }
+        me.setMapOnAll(me.gmap);
     },
 
     addMarker: function (place) {
         var me = this;
 
         var marker = new google.maps.Marker({
-            map: me.gmap,
             position: place.geometry.location,
             icon: {
                 url: 'resources/' + me.poi + '.png',
                 anchor: new google.maps.Point(10, 10),
-                scaledSize: new google.maps.Size(45, 45)
+                scaledSize: new google.maps.Size(40, 40)
             }
         });
 
-
-
+        me.markers.push(marker);
+        
+        me.infoWindow.close();
         google.maps.event.addListener(marker, 'click', function() {
             me.service.getDetails(place, function(result, status) {
-                me.infoWindow.close();
-
                 var data = {
-                    table: me.poi,
+                    type: me.poi,
                     name: Ext.isDefined(result.name) ? result.name : "" ,
                     address: Ext.isDefined(result.formatted_address) ? result.formatted_address : "",
-                    phone: Ext.isDefined(result.formatted_phone_number) ? result.formatted_phone_number : "",
+                    phone: Ext.isDefined(result.international_phone_number) ? result.formatted_phone_number : "",
                     openNow: Ext.isDefined(result.opening_hours) ? result.opening_hours.open_now : "",
                     openingHours: Ext.isDefined(result.opening_hours) ? result.opening_hours.weekday_text : "",
                     website: Ext.isDefined(result.website) ? result.website : "",
@@ -134,7 +143,7 @@ Ext.define('MyApp.view.GoogleView', {
                 Ext.Ajax.request({
                     method: 'POST',
                     headers: { "Content-Type": "application/json" },
-                    url: '/insertHotel',
+                    url: '/insertPOI',
                     params: Ext.JSON.encode(data),
                     success: function (response) {
                         var rightPanel = me.mainView.down('rightpanel');
@@ -149,5 +158,14 @@ Ext.define('MyApp.view.GoogleView', {
                 me.infoWindow.open(me.gmap, marker);
             });
         });
+    },
+
+    setMapOnAll: function (map) {
+
+        var me = this;
+
+        for (var i = 0; i < me.markers.length; i++) {
+            me.markers[i].setMap(map);
+        }
     }
 });

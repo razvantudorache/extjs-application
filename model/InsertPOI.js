@@ -1,16 +1,17 @@
 /**
  * Created by Razvan on 04.05.2016.
  */
-exports.insertHotel = function (db, req, res) {
+exports.insertPOI = function (db, req, res) {
 
     var data = req.body;
     
-    db.collection(data.table).findAndModify(
+    db.collection('poiTable').findAndModify(
         {name: data.name}, //query
         [], //sort
         {
             $inc: {"visited": 1},
             $set: {
+                type:data.type,
                 name: data.name,
                 address: data.address,
                 phone: data.phone,

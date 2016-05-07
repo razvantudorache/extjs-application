@@ -1,8 +1,8 @@
   var express         = require('./packages/node_modules/express');
   var app             = express();
   var mongoConnection = require('./server-db.js');
-  var insertHotel   = require('./model/InsertHotel.js');
-  var getHotel   = require('./model/GetHotel.js');
+  var insertPOI   = require('./model/InsertPOI.js');
+  var getPOI   = require('./model/GetPOI.js');
   var bodyParser = require('body-parser');
   
   app.use(express.static(__dirname));
@@ -11,14 +11,14 @@
   mongoConnection.connectToServer(function (err) {
     var db = mongoConnection.getDb();
 
-    app.post('/insertHotel', function (req, res) {
+    app.post('/insertPOI', function (req, res) {
       
-      insertHotel.insertHotel(db, req, res);
+      insertPOI.insertPOI(db, req, res);
     });
     
     app.get('/getHotel', function (req, res) {
 
-      getHotel.getHotel(db, req, res);
+      getPOI.getPOI(db, req, res);
     });
   });
   
