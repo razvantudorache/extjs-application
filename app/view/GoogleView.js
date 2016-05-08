@@ -120,15 +120,16 @@ Ext.define('MyApp.view.GoogleView', {
         });
 
         me.markers.push(marker);
-        
-        me.infoWindow.close();
+
         google.maps.event.addListener(marker, 'click', function() {
+            me.infoWindow.close();
             me.service.getDetails(place, function(result, status) {
+
                 var data = {
                     type: me.poi,
                     name: Ext.isDefined(result.name) ? result.name : "" ,
                     address: Ext.isDefined(result.formatted_address) ? result.formatted_address : "",
-                    phone: Ext.isDefined(result.international_phone_number) ? result.formatted_phone_number : "",
+                    phone: Ext.isDefined(result.international_phone_number) ? result.international_phone_number : "",
                     openNow: Ext.isDefined(result.opening_hours) ? result.opening_hours.open_now : "",
                     openingHours: Ext.isDefined(result.opening_hours) ? result.opening_hours.weekday_text : "",
                     website: Ext.isDefined(result.website) ? result.website : "",
@@ -139,7 +140,6 @@ Ext.define('MyApp.view.GoogleView', {
                     lng: Ext.isDefined(result.geometry) ? result.geometry.location.lng() : "",
                     comments: []
                 };
-                
                 Ext.Ajax.request({
                     method: 'POST',
                     headers: { "Content-Type": "application/json" },

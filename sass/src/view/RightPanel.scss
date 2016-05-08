@@ -1,5 +1,5 @@
 .detailsCls {
-  .hotelHeader{
+  .hotelHeader {
     .hotelName {
       font-size: 20px;
       color: white;
@@ -10,4 +10,48 @@
     background-color: #2196F3;
     line-height: 50px;
   }
+  .hotelStreet, .hotelPhone, .hotelOpenNow, .hotelWebsite {
+
+    height: 20px;
+    margin-left: 20px;
+    margin-top: 15px;
+  }
+  .hotelOpenNow {
+    font-weight: bolder;
+    cursor: pointer;
+    &.true {
+      color: green;
+    }
+    &.false {
+      color: red;
+    }
+  }
+  .item.x-view-item-focused {
+    outline: none !important;
+  }
+  .hotelStreet {
+    &:before {
+      content: url('location_pin.png');
+      margin-right: 10px;
+    }
+  }
+  .hotelPhone {
+    &:before {
+      content: url('phone.png');
+      margin-right: 10px;
+    }
+  }
+  .hotelOpenNow {
+    &:before {
+      content: url('schedule.png');
+      margin-right: 10px;
+    }
+  }
+  .hotelWebsite {
+    &:before {
+      content: url('web.png');
+      margin-right: 10px;
+    }
+  }
+
 }

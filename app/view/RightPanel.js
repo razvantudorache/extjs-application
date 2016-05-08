@@ -17,17 +17,27 @@ Ext.define('MyApp.view.RightPanel', {
     initComponent: function () {
         var me = this;
 
-        me.template = Ext.XTemplate(
+        me.template = new Ext.XTemplate(
             '<tpl for=".">' +
                 '<div class="item">' +
                     '<div class="hotelHeader">' +
                         '<span class="hotelName">{name}</span>' +
-                        '<span class="hotelRating">{rating}</span>' +
+                        '<tpl if="values.rating">' +
+                            '<span class="hotelRating">{rating}</span>' +
+                        '</tpl>' +
                     '</div>' +
-                    '<div class="hotelStreet">{address}</div>' +
-                    '<div class="hotelPhone">{phone}</div>' +
-                    '<div class="hotelOpenNow">{openNow}</div>' +
-                    '<div class="hotelWebsite"><a href="{website}" target="_blank">{website}</a></div>' +
+                    '<tpl if="values.address">' +
+                        '<div class="hotelStreet">{address}</div>' +
+                    '</tpl>' +
+                    '<tpl if="values.phone">' +
+                        '<div class="hotelPhone">{phone}</div>' +
+                    '</tpl>' +
+                    '<tpl if="values.openNow">' +
+                        '<div class="hotelOpenNow {openNow}">Open now</div>' +
+                    '</tpl>' +
+                    '<tpl if="values.website">' +
+                        '<div class="hotelWebsite"><a href="{website}" target="_blank">{website}</a></div>' +
+                    '</tpl>' +
                 '</div>' +
             '</tpl>'
         );
@@ -39,10 +49,29 @@ Ext.define('MyApp.view.RightPanel', {
                     store: me.initStore(),
                     itemSelector: 'div.item',
                     emptyText: me.emptyText,
-                    deferEmptyText: false
-
+                    deferEmptyText: false,
+                    prepareData: function (data) {
+                        var me = this;
+                        me.up().openingHours = data.openingHours;
+                        me.up().photos = data.photos;
+                        return data;
+                    }
                 }
-            ]
+            ],
+            dockedItems: [{
+                xtype: 'toolbar',
+                dock: 'bottom',
+                items: [
+                    {
+                        xtype: 'button',
+                        text: 'Comments',
+                        width: '100%',
+                        handler: function () {
+                            debugger;
+                        }
+                    }
+                ]
+            }]
         });
         me.callParent(arguments);
     },
@@ -62,5 +91,24 @@ Ext.define('MyApp.view.RightPanel', {
         });
 
         return me.storeReference;
+    },
+
+    afterLayout: function () {
+
+        var me = this;
+        var tooltip = '<div>';
+
+        if (me.openingHours){
+            for (var i = 0; i < me.openingHours.length; i++) {
+                tooltip += '<span class="toolTipOpen">'+ me.openingHours[i] +'</span><br>';
+            }
+            tooltip += '</div>';
+
+            var elem = Ext.dom.Query.select('.hotelOpenNow');
+            if (elem.length !== 0){
+                elem[0].setAttribute('data-qtip', tooltip);
+            }
+        }
     }
+
 });

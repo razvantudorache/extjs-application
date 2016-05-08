@@ -470,7 +470,7 @@
             "output": "shared"
         },
         {
-            "path": "${toolkit.name}/resources"
+            "path": "resources"
         },
         {
             "path": "${build.id}/resources"
