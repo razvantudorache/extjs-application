@@ -8,30 +8,38 @@ Ext.define('MyApp.view.CommentPanel', {
     requires: [
         'MyApp.store.CommentPanel'
     ],
+    labelText: {
+        posted: 'Posted at: '
+    },
     cls: 'commentPanel',
     emptyText: 'no data',
 
     initComponent: function () {
         var me = this;
+
         me.template = new Ext.XTemplate(
             '<tpl for=".">' +
                 '<div class="item">' +
-                    '<span style="display: block">{dateComment}</span>' +
-                    '<span>{comment}</span>' +
+                    '<span class="dateComment">'+ me.labelText.posted +'{dateComment}</span>' +
+                    '<span class="comment">{comment}</span>' +
                 '</div>' +
+                '<tpl if="xindex<xcount">' +
+                '<hr class="delimiterLine">' + 
+                '</tpl>' +
             '</tpl>'
         );
 
         Ext.apply(me,{
-            width: '100%',
+            width: 400,
             items: [
                 {
                     xtype: 'dataview',
                     tpl: me.template,
+                    height: 150,
                     store: me.initStore(),
                     itemSelector: 'div.item',
                     emptyText: me.emptyText,
-                    scrollbale: true,
+                    scrollable: 'y',
                     deferEmptyText: false
                 }
             ]

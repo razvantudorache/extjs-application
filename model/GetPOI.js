@@ -20,8 +20,6 @@ exports.getPOI = function (db, req, res) {
                 }
             };
             res.json(data);
-        } else if (item.length === 0) {
-            res.json(data);
         }
 
     });

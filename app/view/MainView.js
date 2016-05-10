@@ -6,13 +6,11 @@ Ext.define('MyApp.view.MainView', {
     alias: 'widget.mainview',
 
     requires: [
-        'MyApp.view.BottomPanel',
         'MyApp.view.CenterPanel',
         'MyApp.view.RightPanel'
     ],
     labelText: {
         mainTitle: 'Welcome',
-        commentsTitle: 'Comments',
         googleTitle: 'Google View',
         detailsTitle: 'Details'
     },
@@ -49,22 +47,13 @@ Ext.define('MyApp.view.MainView', {
                     flex: 2,
                     collapsible: false
                 },
-                // {
-                //     title: me.labelText.commentsTitle,
-                //     region: 'south',     // position for region
-                //     xtype: 'bottompanel',
-                //     height: 285,
-                //     collapsible: false,
-                //     collapsed: true
-                // },
                 {
                     title: me.labelText.detailsTitle,
                     xtype: 'rightpanel',
                     region:'east',
                     url: '/getHotel',
                     flex: 1,
-                    hideCollapseTool: true,
-                    floatable: false,
+                    split: false,
                     collapsed: true
                 }
             ]

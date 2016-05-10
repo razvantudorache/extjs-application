@@ -54,4 +54,39 @@
     }
   }
 
+  .rightPanelToolbar {
+    border-top: 2px solid #2196F3 !important;
+      .textAreaComment{
+        margin-top: 10px;
+    }
+    .commentPanel {
+      .item {
+        margin-left: 5px;
+        margin-top: 10px;
+        .dateComment {
+          display: block;
+          margin-bottom: 5px;
+        }
+        .comment {
+          word-wrap: break-word;
+        }
+      }
+      .delimiterLine {
+        color: #546E7A;
+      }
+    }
+    .mainTitle {
+      background-color: #64B5F6;
+      width: 100%!important;
+      .x-panel-body {
+        background-color: #64B5F6;
+      }
+      h2 {
+        font-size: 15px;
+        color: #E3F2FD;
+        margin-left: 10px;
+      }
+    }
+  }
+
 }

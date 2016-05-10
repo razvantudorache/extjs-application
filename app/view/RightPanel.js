@@ -6,7 +6,8 @@ Ext.define('MyApp.view.RightPanel', {
     alias: 'widget.rightpanel',
 
     requires: [
-        'MyApp.store.RightPanel'
+        'MyApp.store.RightPanel',
+        'MyApp.view.CommentArea'
     ],
     labelText: {
         title: 'Details'
@@ -61,14 +62,10 @@ Ext.define('MyApp.view.RightPanel', {
             dockedItems: [{
                 xtype: 'toolbar',
                 dock: 'bottom',
+                cls: 'rightPanelToolbar',
                 items: [
                     {
-                        xtype: 'button',
-                        text: 'Comments',
-                        width: '100%',
-                        handler: function () {
-                            debugger;
-                        }
+                        xtype: 'commentarea'
                     }
                 ]
             }]
@@ -81,14 +78,6 @@ Ext.define('MyApp.view.RightPanel', {
 
         me.storeReference = Ext.create('MyApp.store.RightPanel');
         me.storeReference.proxy.url = me.url;
-        me.storeReference.load({
-            callback: function (records, operation, success) {
-                if (Ext.isEmpty(records)) {
-                    Ext.Msg.alert('Info', 'None hotel selected!');
-                }
-            },
-            scope: me
-        });
 
         return me.storeReference;
     },
