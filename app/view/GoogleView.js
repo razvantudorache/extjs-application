@@ -4,7 +4,7 @@
 Ext.define('MyApp.view.GoogleView', {
     extend: 'Ext.ux.GMapPanel',
     alias: 'widget.googleview',
-    
+
     cls: 'googleContainer',
 
     initComponent: function () {
@@ -21,7 +21,7 @@ Ext.define('MyApp.view.GoogleView', {
                     title: 'Holmes Home'
                 }
             },
-            mapOptions : {
+            mapOptions: {
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             },
             listeners: {
@@ -45,9 +45,9 @@ Ext.define('MyApp.view.GoogleView', {
         var gmap = Ext.ComponentQuery.query('googleview')[0].gmap;
         var lat = position.coords.latitude;
         var long = position.coords.longitude;
-        var currentLocation = new google.maps.LatLng(lat,long);
+        var currentLocation = new google.maps.LatLng(lat, long);
 
-        MyApp.singleton.Singleton.setCoords(lat,long);
+        MyApp.singleton.Singleton.setCoords(lat, long);
         gmap.setCenter(currentLocation);
         var marker = new google.maps.Marker({
             position: currentLocation,
@@ -121,13 +121,13 @@ Ext.define('MyApp.view.GoogleView', {
 
         me.markers.push(marker);
 
-        google.maps.event.addListener(marker, 'click', function() {
+        google.maps.event.addListener(marker, 'click', function () {
             me.infoWindow.close();
-            me.service.getDetails(place, function(result, status) {
+            me.service.getDetails(place, function (result, status) {
 
                 var data = {
                     type: me.poi,
-                    name: Ext.isDefined(result.name) ? result.name : "" ,
+                    name: Ext.isDefined(result.name) ? result.name : "",
                     address: Ext.isDefined(result.formatted_address) ? result.formatted_address : "",
                     phone: Ext.isDefined(result.international_phone_number) ? result.international_phone_number : "",
                     openNow: Ext.isDefined(result.opening_hours) ? result.opening_hours.open_now : "",
@@ -140,16 +140,23 @@ Ext.define('MyApp.view.GoogleView', {
                     lng: Ext.isDefined(result.geometry) ? result.geometry.location.lng() : "",
                     comments: []
                 };
+                var rightPanel = me.mainView.down('rightpanel');
+                var commentsRightPanel = rightPanel.down('commentarea').down('commentpanel');
+                commentsRightPanel.namePOI = data.name;
+
                 Ext.Ajax.request({
                     method: 'POST',
-                    headers: { "Content-Type": "application/json" },
+                    headers: {"Content-Type": "application/json"},
                     url: '/insertPOI',
                     params: Ext.JSON.encode(data),
                     success: function (response) {
-                        var rightPanel = me.mainView.down('rightpanel');
-                        rightPanel.params = Ext.JSON.decode(response.responseText);
+
+                        var responseDecoded = Ext.JSON.decode(response.responseText);
                         rightPanel.storeReference.load({
-                            params: rightPanel.params
+                            params: responseDecoded
+                        });
+                        commentsRightPanel.storeReference.load({
+                            params: responseDecoded
                         });
                         rightPanel.expand();
                     }

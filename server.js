@@ -3,6 +3,8 @@
   var mongoConnection = require('./server-db.js');
   var insertPOI   = require('./model/InsertPOI.js');
   var getPOI   = require('./model/GetPOI.js');
+  var getComments = require('./model/GetComments.js');
+  var insertComment = require('./model/InsertComment.js');
   var bodyParser = require('body-parser');
   
   app.use(express.static(__dirname));
@@ -16,9 +18,19 @@
       insertPOI.insertPOI(db, req, res);
     });
     
-    app.get('/getHotel', function (req, res) {
+    app.get('/getPOI', function (req, res) {
 
       getPOI.getPOI(db, req, res);
+    });
+
+    app.get('/getComments', function (req, res) {
+
+      getComments.getComments(db, req, res);
+    });
+
+    app.put('/insertComment', function (req, res) {
+
+      insertComment.insertComment(db, req, res);
     });
   });
   

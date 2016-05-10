@@ -4,7 +4,7 @@
 Ext.define('MyApp.model.CommentPanel', {
     extend: 'Ext.data.Model',
     fields: [
-        {name: 'dateComment', type: 'date' },
-        {name: 'comment', type: 'string'}
+        {name: 'commentDate', type: 'date'},
+        {name: 'commentText'}
     ]
 });

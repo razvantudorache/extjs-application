@@ -12,7 +12,7 @@ Ext.define('MyApp.view.CommentPanel', {
         posted: 'Posted at: '
     },
     cls: 'commentPanel',
-    emptyText: 'no data',
+    emptyText: 'No data',
 
     initComponent: function () {
         var me = this;
@@ -20,8 +20,8 @@ Ext.define('MyApp.view.CommentPanel', {
         me.template = new Ext.XTemplate(
             '<tpl for=".">' +
                 '<div class="item">' +
-                    '<span class="dateComment">'+ me.labelText.posted +'{dateComment}</span>' +
-                    '<span class="comment">{comment}</span>' +
+                    '<span class="dateComment">'+ me.labelText.posted +'{commentDate}</span>' +
+                    '<span class="comment">{commentText}</span>' +
                 '</div>' +
                 '<tpl if="xindex<xcount">' +
                 '<hr class="delimiterLine">' + 
@@ -52,7 +52,7 @@ Ext.define('MyApp.view.CommentPanel', {
 
         me.storeReference = Ext.create('MyApp.store.CommentPanel');
         me.storeReference.proxy.url = me.url;
-        me.storeReference.load();
+
         return me.storeReference;
 
     }

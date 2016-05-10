@@ -51,7 +51,7 @@ Ext.define('MyApp.view.MainView', {
                     title: me.labelText.detailsTitle,
                     xtype: 'rightpanel',
                     region:'east',
-                    url: '/getHotel',
+                    url: '/getPOI',
                     flex: 1,
                     split: false,
                     collapsed: true

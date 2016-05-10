@@ -23,7 +23,7 @@ Ext.define('MyApp.view.CommentArea', {
                 },
                 {
                     xtype: 'commentpanel',
-                    url: 'resources/CommentPanel.json'
+                    url: '/getComments'
 
                 },
                 {
@@ -43,8 +43,34 @@ Ext.define('MyApp.view.CommentArea', {
                         xtype: 'button',
                         text: 'Post comment',
                         handler: function () {
+                            var me = this;
 
-                        }
+                            var textArea = me.down('textarea');
+                            var comment = {
+                                commentDate: new Date(),
+                                commentText: textArea.getValue()
+                            };
+                            var data = {
+                                name: me.down('commentpanel').namePOI,
+                                newComment: comment
+
+                            };
+                            if (textArea.isValid()) {
+                                Ext.Ajax.request({
+                                    method: 'PUT',
+                                    headers: { "Content-Type": "application/json" },
+                                    url: '/insertComment',
+                                    params: Ext.JSON.encode(data),
+                                    success: function (response) {
+                                        var responseDecoded = Ext.JSON.decode(response.responseText);
+                                        me.down('commentpanel').storeReference.load({
+                                            params: responseDecoded
+                                        });
+                                    }
+                                });
+                            }
+                        },
+                        scope: me
                     }
                 ]
             }]

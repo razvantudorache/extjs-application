@@ -21,8 +21,7 @@ exports.insertPOI = function (db, req, res) {
                 photos: data.photos,
                 rating: data.rating,
                 lat: data.lat,
-                lng: data.lng,
-                comments: data.comments
+                lng: data.lng
             }
         }, //update
         {new: true, upsert: true}
@@ -30,8 +29,7 @@ exports.insertPOI = function (db, req, res) {
         function (error, response) {
             var data = {
                 lat: response.value.lat,
-                lng: response.value.lng,
-                table: response.value.table
+                lng: response.value.lng
             };
             res.json(data);
         }
