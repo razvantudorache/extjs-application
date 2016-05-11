@@ -15,12 +15,14 @@ exports.getComments = function (db, req, res) {
         if (item.length === 1) {
             var results = [];
             var commentsPOI = item[0].comments;
-            for (var i=0; i<commentsPOI.length; i++){
-                var comment = {
-                    commentDate: commentsPOI[i].commentDate,
-                    commentText: commentsPOI[i].commentText
-                };
-                results.push(comment);
+            if (commentsPOI) {
+                for (var i=0; i<commentsPOI.length; i++){
+                    var comment = {
+                        commentDate: commentsPOI[i].commentDate,
+                        commentText: commentsPOI[i].commentText
+                    };
+                    results.push(comment);
+                }
             }
             var data = {
                 success: true,
