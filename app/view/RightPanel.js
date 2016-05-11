@@ -100,12 +100,19 @@ Ext.define('MyApp.view.RightPanel', {
         }
         var rating = Ext.dom.Query.select('.hotelRating');
         if (rating.length !== 0) {
+            debugger;
+            var ratingCmp = Ext.ComponentQuery.query('rating')[0];
+            if (Ext.isDefined(ratingCmp)) {
+                ratingCmp.destroy();
+            }
             new Ext.ux.rating.Picker({
                 value: me.rating,
                 trackOver: false,
                 rounding: 0.25,
-                renderTo:'stars'
+                renderTo: 'stars'
             });
+
+
         }
 
     }
