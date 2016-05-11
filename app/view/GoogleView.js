@@ -152,6 +152,7 @@ Ext.define('MyApp.view.GoogleView', {
                     success: function (response) {
 
                         var responseDecoded = Ext.JSON.decode(response.responseText);
+                        rightPanel.rating = data.rating;
                         rightPanel.storeReference.load({
                             params: responseDecoded
                         });

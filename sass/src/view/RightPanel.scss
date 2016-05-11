@@ -1,4 +1,13 @@
 .detailsCls {
+  .hotelRating {
+    font-size: 15px;
+    float: right;
+    margin-right: 30px;
+    .ux-rating-picker {
+      line-height: 50px;
+      margin-left: 10px;
+    }
+  }
   .hotelHeader {
     .hotelName {
       font-size: 20px;
@@ -56,8 +65,8 @@
 
   .rightPanelToolbar {
     border-top: 2px solid #2196F3 !important;
-      .textAreaComment{
-        margin-top: 10px;
+    .textAreaComment {
+      margin-top: 10px;
     }
     .commentPanel {
       .item {
@@ -77,7 +86,7 @@
     }
     .mainTitle {
       background-color: #64B5F6;
-      width: 100%!important;
+      width: 100% !important;
       .x-panel-body {
         background-color: #64B5F6;
       }

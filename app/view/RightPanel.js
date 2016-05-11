@@ -24,7 +24,7 @@ Ext.define('MyApp.view.RightPanel', {
                     '<div class="hotelHeader">' +
                         '<span class="hotelName">{name}</span>' +
                         '<tpl if="values.rating">' +
-                            '<span class="hotelRating">{rating}</span>' +
+                            '<span class="hotelRating" id="stars">{rating}</span>' +
                         '</tpl>' +
                     '</div>' +
                     '<tpl if="values.address">' +
@@ -98,6 +98,16 @@ Ext.define('MyApp.view.RightPanel', {
                 elem[0].setAttribute('data-qtip', tooltip);
             }
         }
+        var rating = Ext.dom.Query.select('.hotelRating');
+        if (rating.length !== 0) {
+            new Ext.ux.rating.Picker({
+                value: me.rating,
+                trackOver: false,
+                rounding: 0.25,
+                renderTo:'stars'
+            });
+        }
+
     }
 
 });

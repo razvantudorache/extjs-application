@@ -20,7 +20,7 @@ Ext.define('MyApp.view.CommentPanel', {
         me.template = new Ext.XTemplate(
             '<tpl for=".">' +
                 '<div class="item">' +
-                    '<span class="dateComment">'+ me.labelText.posted +'{commentDate}</span>' +
+                    '<span class="dateComment">'+ me.labelText.posted +'{commentDate:date("Y-m-d H:i:s")}</span>' +
                     '<span class="comment">{commentText}</span>' +
                 '</div>' +
                 '<tpl if="xindex<xcount">' +
