@@ -12,7 +12,7 @@ Ext.define('MyApp.view.CommentPanel', {
         posted: 'Posted at: '
     },
     cls: 'commentPanel',
-    emptyText: 'No data',
+    emptyText: 'No comments',
 
     initComponent: function () {
         var me = this;

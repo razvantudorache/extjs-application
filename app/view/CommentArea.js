@@ -62,6 +62,8 @@ Ext.define('MyApp.view.CommentArea', {
                                     url: '/insertComment',
                                     params: Ext.JSON.encode(data),
                                     success: function (response) {
+                                        textArea.clearInvalid();
+                                        textArea.reset();
                                         var responseDecoded = Ext.JSON.decode(response.responseText);
                                         me.down('commentpanel').storeReference.load({
                                             params: responseDecoded

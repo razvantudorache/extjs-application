@@ -4,7 +4,7 @@
 Ext.define('MyApp.view.CenterPanel', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.centerpanel',
-
+    cls: 'centerPanel',
     requires: [
         'MyApp.view.GoogleView',
         'MyApp.view.PoiCombo'
@@ -18,6 +18,7 @@ Ext.define('MyApp.view.CenterPanel', {
             items: [
                 {
                     xtype: 'poicombobox',
+                    cls: 'combobox',
                     mainParent: me,
                     displayField: 'title',
                     valueField: 'value'
