@@ -30,6 +30,8 @@ Ext.define('MyApp.view.CommentArea', {
                     xtype: 'textarea',
                     cls: 'textAreaComment',
                     maxLength: 250,
+                    minLength: 3,
+                    minLengthText: 'The minimul length for this field is 3 character',
                     maxLengthText: 'The maximum length for this field is 250 characters',
                     width: 400
                 }
@@ -55,7 +57,7 @@ Ext.define('MyApp.view.CommentArea', {
                                 newComment: comment
 
                             };
-                            if (textArea.isValid()) {
+                            if (textArea.isValid() && textArea.getValue().length!==0) {
                                 Ext.Ajax.request({
                                     method: 'PUT',
                                     headers: { "Content-Type": "application/json" },
