@@ -125,6 +125,11 @@ Ext.define('MyApp.view.GoogleView', {
             me.infoWindow.close();
             me.service.getDetails(place, function (result, status) {
 
+                if (Ext.isDefined(result.photos)) {
+                    for (var i=0; i<result.photos.length; i++) {
+                        result.photos[i] = result.photos[i].getUrl({'maxWidth': 400, 'maxHeight': 400});
+                    }
+                }
                 var data = {
                     type: me.poi,
                     name: Ext.isDefined(result.name) ? result.name : "",

@@ -39,6 +39,15 @@ Ext.define('MyApp.view.RightPanel', {
                     '<tpl if="values.website">' +
                         '<div class="hotelWebsite"><a href="{website}" target="_blank">{website}</a></div>' +
                     '</tpl>' +
+                    '<div class="photoGallery">' +
+                        '<tpl if="values.photos">' +
+                            '<tpl for="photos">' +
+                                '<div><img src="{.}"/></div>' +
+                            '</tpl>' +
+                        '<tpl else>' +
+                            '<div><img src="/resources/placeholder.png" height="100%" width="95%"/></div>' +
+                        '</tpl>' +
+                    '</div>' +
                 '</div>' +
             '</tpl>'
         );
@@ -83,8 +92,34 @@ Ext.define('MyApp.view.RightPanel', {
     },
 
     afterLayout: function () {
-
         var me = this;
+
+        me.addGalleryComponent();
+        me.addTooltipComponent();
+        me.addRatingComponent();
+    },
+
+    addRatingComponent: function () {
+        var me = this;
+
+        var rating = Ext.dom.Query.select('.hotelRating');
+        if (rating.length !== 0) {
+            var ratingCmp = Ext.ComponentQuery.query('rating')[0];
+            if (Ext.isDefined(ratingCmp)) {
+                ratingCmp.destroy();
+            }
+            new Ext.ux.rating.Picker({
+                value: me.rating,
+                trackOver: false,
+                rounding: 0.25,
+                renderTo: 'stars'
+            });
+        }
+    },
+
+    addTooltipComponent: function () {
+        var me = this;
+
         var tooltip = '<div>';
 
         if (me.openingHours){
@@ -98,23 +133,20 @@ Ext.define('MyApp.view.RightPanel', {
                 elem[0].setAttribute('data-qtip', tooltip);
             }
         }
-        var rating = Ext.dom.Query.select('.hotelRating');
-        if (rating.length !== 0) {
-            debugger;
-            var ratingCmp = Ext.ComponentQuery.query('rating')[0];
-            if (Ext.isDefined(ratingCmp)) {
-                ratingCmp.destroy();
-            }
-            new Ext.ux.rating.Picker({
-                value: me.rating,
-                trackOver: false,
-                rounding: 0.25,
-                renderTo: 'stars'
-            });
+    },
 
+    addGalleryComponent: function () {
+        var photoGallery = Ext.dom.Query.select('.photoGallery');
+        var slickSlider = Ext.dom.Query.select('.slick-slider');
 
+        if(photoGallery.length!==0 && slickSlider.length === 0) {
+            var slickOpts = {
+                dots: true,
+                prevArrow: false,
+                nextArrow: false
+            };
+            $('.photoGallery').slick(slickOpts);
         }
-
     }
 
 });
