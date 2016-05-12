@@ -18,6 +18,5 @@ Ext.define('MyApp.Application', {
     ],
     
     launch:function(){
-        // debugger;
     }
 });
