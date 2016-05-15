@@ -42,21 +42,23 @@ Ext.define('MyApp.view.users.GoogleView', {
     getLocation: function (position) {
 
 
-        var gmap = Ext.ComponentQuery.query('googleview')[0].gmap;
-        var lat = position.coords.latitude;
-        var long = position.coords.longitude;
-        var currentLocation = new google.maps.LatLng(lat, long);
+        var map = Ext.ComponentQuery.query('googleview')[0];
+        if (Ext.isDefined(map)) {
+            var gmap = map.gmap;
+            var lat = position.coords.latitude;
+            var long = position.coords.longitude;
+            var currentLocation = new google.maps.LatLng(lat, long);
 
-        MyApp.singleton.Singleton.setCoords(lat, long);
-        gmap.setCenter(currentLocation);
-        var marker = new google.maps.Marker({
-            position: currentLocation,
-            map: gmap,
-            title: 'You are here!'
-        });
+            MyApp.singleton.Singleton.setCoords(lat, long);
+            gmap.setCenter(currentLocation);
+            var marker = new google.maps.Marker({
+                position: currentLocation,
+                map: gmap,
+                title: 'You are here!'
+            });
 
-        gmap.setZoom(16);
-
+            gmap.setZoom(16);
+        }
     },
 
     afterComponentLayout: function () {
