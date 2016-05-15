@@ -1,7 +1,7 @@
 /**
  * Created by Razvan on 06.05.2016.
  */
-Ext.define('MyApp.model.RightPanel', {
+Ext.define('MyApp.model.users.RightPanel', {
     extend: 'Ext.data.Model',
     fields: [
         {name: 'name'},

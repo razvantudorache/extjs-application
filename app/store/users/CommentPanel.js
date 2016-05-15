@@ -1,17 +1,17 @@
 /**
  * Created by Razvan on 27.04.2016.
  */
-Ext.define('MyApp.store.CommentPanel', {
+Ext.define('MyApp.store.users.CommentPanel', {
     extend: 'Ext.data.Store',
     requires: [
-        'MyApp.model.CommentPanel'
+        'MyApp.model.users.CommentPanel'
     ],
 
     constructor: function (cfg) {
         var me = this;
         cfg = cfg || {};
         me.callParent([Ext.apply({
-            model: 'MyApp.model.CommentPanel',
+            model: 'MyApp.model.users.CommentPanel',
             pageSize: 10,
             sortOnLoad: false,
             proxy: {

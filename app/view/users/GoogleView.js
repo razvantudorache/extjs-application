@@ -1,7 +1,7 @@
 /**
  * Created by Razvan on 21.04.2016.
  */
-Ext.define('MyApp.view.GoogleView', {
+Ext.define('MyApp.view.users.GoogleView', {
     extend: 'Ext.ux.GMapPanel',
     alias: 'widget.googleview',
 

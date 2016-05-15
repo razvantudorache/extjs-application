@@ -1,12 +1,12 @@
 /**
  * Created by Razvan on 27.04.2016.
  */
-Ext.define('MyApp.view.CommentArea', {
+Ext.define('MyApp.view.users.CommentArea', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.commentarea',
     
     requires: [
-        'MyApp.view.CommentPanel'
+        'MyApp.view.users.CommentPanel'
     ],
     labelText: {
         title: 'Comments'

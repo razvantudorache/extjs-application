@@ -1,12 +1,12 @@
 /**
  * Created by Razvan on 27.04.2016.
  */
-Ext.define('MyApp.view.CommentPanel', {
+Ext.define('MyApp.view.users.CommentPanel', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.commentpanel',
 
     requires: [
-        'MyApp.store.CommentPanel'
+        'MyApp.store.users.CommentPanel'
     ],
     labelText: {
         posted: 'Posted at: '
@@ -50,7 +50,7 @@ Ext.define('MyApp.view.CommentPanel', {
     initStore: function () {
         var me = this;
 
-        me.storeReference = Ext.create('MyApp.store.CommentPanel');
+        me.storeReference = Ext.create('MyApp.store.users.CommentPanel');
         me.storeReference.proxy.url = me.url;
 
         return me.storeReference;

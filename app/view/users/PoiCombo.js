@@ -1,7 +1,7 @@
 /**
  * Created by Razvan on 07.05.2016.
  */
-Ext.define('MyApp.view.PoiCombo', {
+Ext.define('MyApp.view.users.PoiCombo', {
     extend: 'Ext.form.field.ComboBox',
     alias: 'widget.poicombobox',
 

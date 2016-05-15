@@ -6,8 +6,8 @@ Ext.define('MyApp.view.MainView', {
     alias: 'widget.mainview',
 
     requires: [
-        'MyApp.view.CenterPanel',
-        'MyApp.view.RightPanel'
+        'MyApp.view.users.CenterPanel',
+        'MyApp.view.users.RightPanel'
     ],
     labelText: {
         mainTitle: 'Welcome',

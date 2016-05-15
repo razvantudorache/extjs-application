@@ -1,13 +1,13 @@
 /**
  * Created by Razvan on 27.04.2016.
  */
-Ext.define('MyApp.view.CenterPanel', {
+Ext.define('MyApp.view.users.CenterPanel', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.centerpanel',
     cls: 'centerPanel',
     requires: [
-        'MyApp.view.GoogleView',
-        'MyApp.view.PoiCombo'
+        'MyApp.view.users.GoogleView',
+        'MyApp.view.users.PoiCombo'
     ],
     
     initComponent: function () {

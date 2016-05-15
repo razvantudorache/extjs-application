@@ -1,13 +1,13 @@
 /**
  * Created by Razvan on 27.04.2016.
  */
-Ext.define('MyApp.view.RightPanel', {
+Ext.define('MyApp.view.users.RightPanel', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.rightpanel',
 
     requires: [
-        'MyApp.store.RightPanel',
-        'MyApp.view.CommentArea'
+        'MyApp.store.users.RightPanel',
+        'MyApp.view.users.CommentArea'
     ],
     labelText: {
         title: 'Details'
@@ -85,7 +85,7 @@ Ext.define('MyApp.view.RightPanel', {
     initStore: function () {
         var me = this;
 
-        me.storeReference = Ext.create('MyApp.store.RightPanel');
+        me.storeReference = Ext.create('MyApp.store.users.RightPanel');
         me.storeReference.proxy.url = me.url;
 
         return me.storeReference;
