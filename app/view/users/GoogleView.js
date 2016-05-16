@@ -35,7 +35,7 @@ Ext.define('MyApp.view.users.GoogleView', {
 
     renderHandler: function () {
         var me = this;
-        me.poi = "hotel";
+        me.poi = "lodging";
         navigator.geolocation.getCurrentPosition(me.getLocation);
     },
 

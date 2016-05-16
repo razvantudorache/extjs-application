@@ -141,7 +141,6 @@ Ext.define('MyApp.view.users.RightPanel', {
 
         if(photoGallery.length!==0 && slickSlider.length === 0) {
             var slickOpts = {
-                dots: true,
                 prevArrow: false,
                 nextArrow: false
             };

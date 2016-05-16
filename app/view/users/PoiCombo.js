@@ -18,7 +18,7 @@ Ext.define('MyApp.view.users.PoiCombo', {
             width:350,
             allowBlank: false,
             editable: false,
-            value: "hotel",
+            value: "lodging",
             listeners: {
                 select: {fn: me.selectHandler, scope:me}
             }
@@ -33,7 +33,7 @@ Ext.define('MyApp.view.users.PoiCombo', {
         me.storeReferences = Ext.create('Ext.data.Store', {
             fields: ['title', 'value'],
             data: [
-                {"title": "Hotels", "value": "hotel"},
+                {"title": "Hotels", "value": "lodging"},
                 {"title": "Restaurants", "value": "restaurant"}
             ],
             autoLoad: false

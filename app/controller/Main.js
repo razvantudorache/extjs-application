@@ -4,7 +4,8 @@
 Ext.define('MyApp.controller.Main', {
     extend: 'Ext.app.Controller',
     views: [
-        'MyApp.view.MainView'
+        'MyApp.view.MainView',
+        'MyApp.view.admin.MainViewAdmin'
     ],
 
     init: function () {
@@ -22,11 +23,28 @@ Ext.define('MyApp.controller.Main', {
     },
     
     goAdminPage: function () {
-        debugger;
         var me = this;
+
         var view = me.getMain();
         view.removeAll();
+        view.add(
+            {
+                title: 'Welcome on admin page',
+                region: 'north',
+                collapsible: false,
+                split: false,
+                height: 47
+            },
+            {
+                title: 'Administrator panel',
+                region: 'center',
+                xtype: 'mainviewadmin',
+                collapsible: false,
+                split: false
+            }
+
+        );
         console.log('intra aici');
     }
-    
+
 });
