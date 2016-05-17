@@ -4,6 +4,10 @@
 Ext.define('MyApp.view.admin.POIGrid', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.poigrid',
+    
+    requires: [
+        'MyApp.store.admin.POIGrid'
+    ],
 
     initComponent: function () {
         var me = this;

@@ -132,6 +132,11 @@ Ext.define('MyApp.view.users.GoogleView', {
                         result.photos[i] = result.photos[i].getUrl({'maxWidth': 400, 'maxHeight': 400});
                     }
                 }
+
+                if (me.poi === "lodging") {
+                    me.poi = "hotel";
+                }
+                
                 var data = {
                     type: me.poi,
                     name: Ext.isDefined(result.name) ? result.name : "",
