@@ -39,7 +39,8 @@ Ext.define('MyApp.view.admin.MainViewAdmin', {
                 },
                 {
                     title: 'Most visited POIs',
-                     xtype: 'mostvisitedpoi'
+                    xtype: 'mostvisitedpoi',
+                    url: '/getMostVisitedPOIs'
                 }
             ]
         });

@@ -5,6 +5,7 @@
   var getPOI   = require('./model/GetPOI.js');
   var getAllPOIs = require('./model/GetAllPOIs.js');
   var getComments = require('./model/GetComments.js');
+  var getMostVisitedPOIs = require('./model/GetMostVisitedPOIs.js');
   var insertComment = require('./model/InsertComment.js');
   var bodyParser = require('body-parser');
   
@@ -36,7 +37,11 @@
     
     app.get('/getAllPOIs', function (req, res) {
       getAllPOIs.getAllPOIs(db, req, res);
-    })
+    });
+    
+    app.get('/getMostVisitedPOIs', function (req, res) {
+      getMostVisitedPOIs.getMostVisitedPOIs(db, req, res);
+    });
   });
   
   app.get('/', function (req, res) {
