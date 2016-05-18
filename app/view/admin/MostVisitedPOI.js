@@ -31,7 +31,7 @@ Ext.define('MyApp.view.admin.MostVisitedPOI', {
                 },
                 sprites: [{
                     type: 'text',
-                    text: 'Sales in Last Two Years',
+                    text: 'Chart with most visited POI',
                     textAlign: 'center',
                     fontSize: 18,
                     fontWeight: 'bold',
@@ -39,13 +39,6 @@ Ext.define('MyApp.view.admin.MostVisitedPOI', {
                     height: 30,
                     x: 325, // the sprite x position
                     y: 30  // the sprite y position
-                }, {
-                    type: 'text',
-                    text: 'Quarter-wise comparison',
-                    textAlign: 'center',
-                    fontSize: 16,
-                    x: 325,
-                    y: 50
                 }],
                 axes: [{
                     type: 'numeric3d',
