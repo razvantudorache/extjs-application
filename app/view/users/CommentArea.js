@@ -33,7 +33,7 @@ Ext.define('MyApp.view.users.CommentArea', {
                     minLength: 3,
                     minLengthText: 'The minimul length for this field is 3 character',
                     maxLengthText: 'The maximum length for this field is 250 characters',
-                    width: 400
+                    width: 410
                 }
             ],
             dockedItems: [{
