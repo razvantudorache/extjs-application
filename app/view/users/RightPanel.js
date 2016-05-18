@@ -52,9 +52,14 @@ Ext.define('MyApp.view.users.RightPanel', {
             '</tpl>'
         );
         Ext.apply(me, {
+            layout: {
+                type: 'vbox',
+                align: 'stretch'
+            },
             items: [
                 {
                     xtype: 'dataview',
+                    flex: 1.5,
                     tpl: me.template,
                     store: me.initStore(),
                     itemSelector: 'div.item',
@@ -65,19 +70,19 @@ Ext.define('MyApp.view.users.RightPanel', {
                         me.up().openingHours = data.openingHours;
                         me.up().photos = data.photos;
                         return data;
+                    },
+                    listeners: {
+                        afterlayoutanimation: function () {
+                            debugger;
+                        }
                     }
+                },
+                {
+                    flex:1,
+                    xtype: 'commentarea',
+                    cls: 'rightPanelToolbar'
                 }
-            ],
-            dockedItems: [{
-                xtype: 'toolbar',
-                dock: 'bottom',
-                cls: 'rightPanelToolbar',
-                items: [
-                    {
-                        xtype: 'commentarea'
-                    }
-                ]
-            }]
+            ]
         });
         me.callParent(arguments);
     },
