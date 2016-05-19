@@ -6,7 +6,14 @@ Ext.define('MyApp.view.admin.MostVisitedPOI', {
     alias: 'widget.mostvisitedpoi',
     requires: [
         'Ext.chart.theme.Muted',
-        'MyApp.store.admin.MostVisitedPOI'
+        'MyApp.store.admin.MostVisitedPOI',
+        'Ext.chart.CartesianChart',
+        'Ext.chart.axis.Numeric3D',
+        'Ext.chart.grid.HorizontalGrid3D',
+        'Ext.chart.axis.Category3D',
+        'Ext.chart.grid.VerticalGrid3D',
+        'Ext.chart.series.Bar3D',
+        'Ext.chart.interactions.ItemHighlight'
     ],
     width: 650,
 
@@ -69,6 +76,20 @@ Ext.define('MyApp.view.admin.MostVisitedPOI', {
                     highlight: true,
                     style: {
                         inGroupGapWidth: -7
+                    },
+                    tooltip: {
+                        trackMouse: true,
+                        width: 200,
+                        height: 80,
+                        renderer: function(toolTip, record, ctx) {
+                            var tplToolTip =
+                                '<div class="toolTipContainer">' +
+                                    '<article class="name">' + record.data.name + '</article>' +
+                                    '<article class="rating">Rating: ' + record.data.rating + ' stars</article>' +
+                                    '<article class="visited">Visited:' + record.data.visited + ' times</article>' +
+                                '</div>';
+                            toolTip.setHtml(tplToolTip);
+                        }
                     }
                 }
             }]

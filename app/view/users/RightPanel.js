@@ -33,7 +33,7 @@ Ext.define('MyApp.view.users.RightPanel', {
                     '<tpl if="values.phone">' +
                         '<div class="hotelPhone">{phone}</div>' +
                     '</tpl>' +
-                    '<tpl if="values.openNow">' +
+                    '<tpl if="values.openNow !== \'\'">' +
                         '<div class="hotelOpenNow {openNow}">Open now</div>' +
                     '</tpl>' +
                     '<tpl if="values.website">' +
