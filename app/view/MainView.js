@@ -50,6 +50,7 @@ Ext.define('MyApp.view.MainView', {
                 {
                     title: me.labelText.detailsTitle,
                     xtype: 'rightpanel',
+                    mainView: me,
                     region:'east',
                     url: '/getPOI',
                     flex: 1,

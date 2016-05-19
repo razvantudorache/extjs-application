@@ -60,6 +60,7 @@ Ext.define('MyApp.view.users.RightPanel', {
                 {
                     xtype: 'dataview',
                     flex: 1.5,
+                    itemId: 'detailsDataView',
                     tpl: me.template,
                     store: me.initStore(),
                     itemSelector: 'div.item',
@@ -70,11 +71,6 @@ Ext.define('MyApp.view.users.RightPanel', {
                         me.up().openingHours = data.openingHours;
                         me.up().photos = data.photos;
                         return data;
-                    },
-                    listeners: {
-                        afterlayoutanimation: function () {
-                            debugger;
-                        }
                     }
                 },
                 {

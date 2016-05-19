@@ -13,7 +13,6 @@ Ext.define('MyApp.store.users.RightPanel', {
         me.callParent([Ext.apply({
             model: 'MyApp.model.users.RightPanel',
             pageSize: 10,
-            sortOnLoad: false,
             proxy: {
                 type: 'ajax',
                 reader: {

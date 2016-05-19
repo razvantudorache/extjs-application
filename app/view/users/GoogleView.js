@@ -7,6 +7,10 @@ Ext.define('MyApp.view.users.GoogleView', {
 
     cls: 'googleContainer',
 
+    labelText: {
+        detailsTitle: 'Details'
+    },
+
     initComponent: function () {
         var me = this;
 
@@ -154,6 +158,7 @@ Ext.define('MyApp.view.users.GoogleView', {
                 };
                 var rightPanel = me.mainView.down('rightpanel');
                 var commentsRightPanel = rightPanel.down('commentarea').down('commentpanel');
+                rightPanel.rating = data.rating;
                 commentsRightPanel.namePOI = data.name;
 
                 Ext.Ajax.request({
@@ -163,15 +168,43 @@ Ext.define('MyApp.view.users.GoogleView', {
                     params: Ext.JSON.encode(data),
                     success: function (response) {
 
+
                         var responseDecoded = Ext.JSON.decode(response.responseText);
-                        rightPanel.rating = data.rating;
-                        rightPanel.storeReference.load({
-                            params: responseDecoded
-                        });
-                        commentsRightPanel.storeReference.load({
-                            params: responseDecoded
-                        });
-                        rightPanel.expand();
+
+                        if (!rightPanel.getCollapsed()) {
+                            me.mainView.remove(rightPanel);
+                            me.mainView.add({
+                                title: me.labelText.detailsTitle,
+                                xtype: 'rightpanel',
+                                region:'east',
+                                url: '/getPOI',
+                                flex: 1,
+                                split: false,
+                                collapsed: true
+                            });
+                            rightPanel = me.mainView.down('rightpanel');
+                            commentsRightPanel = rightPanel.down('commentarea').down('commentpanel');
+
+                            rightPanel.rating = data.rating;
+                            commentsRightPanel.namePOI = data.name;
+                            rightPanel.storeReference.load({
+                                params: responseDecoded
+                            });
+                            commentsRightPanel.storeReference.load({
+                                params: responseDecoded
+                            });
+                            rightPanel.expand();
+                        } else {
+                            rightPanel.storeReference.load({
+                                params: responseDecoded
+                            });
+                            commentsRightPanel.storeReference.load({
+                                params: responseDecoded
+                            });
+                            rightPanel.expand();
+                        }
+
+
                     }
                 });
                 me.infoWindow.setContent(result.name);
