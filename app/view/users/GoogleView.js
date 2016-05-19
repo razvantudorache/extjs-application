@@ -132,7 +132,7 @@ Ext.define('MyApp.view.users.GoogleView', {
             me.service.getDetails(place, function (result, status) {
 
                 if (Ext.isDefined(result.photos)) {
-                    for (var i=0; i<result.photos.length; i++) {
+                    for (var i = 0; i < result.photos.length; i++) {
                         result.photos[i] = result.photos[i].getUrl({'maxWidth': 400, 'maxHeight': 400});
                     }
                 }
@@ -140,7 +140,7 @@ Ext.define('MyApp.view.users.GoogleView', {
                 if (me.poi === "lodging") {
                     me.poi = "hotel";
                 }
-                
+
                 var data = {
                     type: me.poi,
                     name: Ext.isDefined(result.name) ? result.name : "",
@@ -171,12 +171,13 @@ Ext.define('MyApp.view.users.GoogleView', {
 
                         var responseDecoded = Ext.JSON.decode(response.responseText);
 
+                        //remove the old panel and replace with the new one
                         if (!rightPanel.getCollapsed()) {
                             me.mainView.remove(rightPanel);
                             me.mainView.add({
                                 title: me.labelText.detailsTitle,
                                 xtype: 'rightpanel',
-                                region:'east',
+                                region: 'east',
                                 url: '/getPOI',
                                 flex: 1,
                                 split: false,
@@ -187,24 +188,14 @@ Ext.define('MyApp.view.users.GoogleView', {
 
                             rightPanel.rating = data.rating;
                             commentsRightPanel.namePOI = data.name;
-                            rightPanel.storeReference.load({
-                                params: responseDecoded
-                            });
-                            commentsRightPanel.storeReference.load({
-                                params: responseDecoded
-                            });
-                            rightPanel.expand();
-                        } else {
-                            rightPanel.storeReference.load({
-                                params: responseDecoded
-                            });
-                            commentsRightPanel.storeReference.load({
-                                params: responseDecoded
-                            });
-                            rightPanel.expand();
                         }
-
-
+                        rightPanel.storeReference.load({
+                            params: responseDecoded
+                        });
+                        commentsRightPanel.storeReference.load({
+                            params: responseDecoded
+                        });
+                        rightPanel.expand();
                     }
                 });
                 me.infoWindow.setContent(result.name);
