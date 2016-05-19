@@ -60,7 +60,6 @@ Ext.define('MyApp.view.users.RightPanel', {
                 {
                     xtype: 'dataview',
                     flex: 1.5,
-                    itemId: 'detailsDataView',
                     tpl: me.template,
                     store: me.initStore(),
                     itemSelector: 'div.item',
