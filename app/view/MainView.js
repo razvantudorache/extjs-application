@@ -10,7 +10,7 @@ Ext.define('MyApp.view.MainView', {
         'MyApp.view.users.RightPanel'
     ],
     labelText: {
-        mainTitle: 'Welcome',
+        mainTitle: 'Welcome to POI Finder',
         googleTitle: 'Google View',
         detailsTitle: 'Details'
     },

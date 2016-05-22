@@ -82,6 +82,10 @@ Ext.define('MyApp.view.admin.MostVisitedPOI', {
                         width: 200,
                         height: 80,
                         renderer: function(toolTip, record, ctx) {
+                            
+                            if (Ext.isEmpty(record.data.rating)) {
+                                record.data.rating = 0;
+                            }
                             var tplToolTip =
                                 '<div class="toolTipContainer">' +
                                     '<article class="name">' + record.data.name + '</article>' +
