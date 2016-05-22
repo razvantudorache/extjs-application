@@ -13,8 +13,16 @@ Ext.define('MyApp.view.admin.POIGrid', {
         var me = this;
 
         Ext.apply(me, {
+            plugins: 'gridfilters',
             columns: [
-                { text: 'Name', dataIndex: 'name', flex:1 },
+                { text: 'Name',
+                    dataIndex: 'name',
+                    flex:1,
+                    filter: {
+                        // required configs
+                        type: 'string'
+                    }
+                },
                 { text: 'Email', dataIndex: 'address', flex:1},
                 { text: 'Phone', dataIndex: 'phone', flex:1 },
                 { text: 'Website', dataIndex: 'website', flex:1 },
