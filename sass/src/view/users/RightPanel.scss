@@ -1,13 +1,4 @@
 .detailsCls {
-  .hotelRating {
-    font-size: 15px;
-    float: right;
-    margin-right: 30px;
-    .ux-rating-picker {
-      line-height: 50px;
-      margin-left: 10px;
-    }
-  }
   .hotelHeader {
     .hotelName {
       font-size: 20px;
@@ -18,6 +9,15 @@
     height: 50px;
     background-color: #2196F3;
     line-height: 50px;
+    .hotelRating {
+      font-size: 15px;
+      float: right;
+      margin-right: 30px;
+      .ux-rating-picker {
+        line-height: 50px;
+        margin-left: 10px;
+      }
+    }
   }
   .hotelStreet, .hotelPhone, .hotelOpenNow, .hotelWebsite {
 
