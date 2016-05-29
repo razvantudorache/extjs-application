@@ -3,8 +3,8 @@
  */
 Ext.define('MyApp.singleton.Singleton', {
     singleton: true,
-    
-    component: null,
+
+    mainComponent: null,
     coords: {},
     
     setComponent: function (value) {
