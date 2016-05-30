@@ -48,10 +48,6 @@
   	 res.sendFile(__dirname+"\\index.html");
   });
   
-  app.get('/', function (req, res) {
-    res.sendFile(__dirname+"\\index2.html");
-  });
-  
   var server = app.listen(3000, function () {
 
     var host = server.address().address;
