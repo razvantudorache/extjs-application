@@ -1,4 +1,4 @@
-  var express         = require('./packages/node_modules/express');
+  var express         = require('express');
   var app             = express();
   var mongoConnection = require('./server-db.js');
   var insertPOI   = require('./model/InsertPOI.js');
