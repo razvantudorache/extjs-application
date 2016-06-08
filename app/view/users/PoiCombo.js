@@ -9,13 +9,13 @@ Ext.define('MyApp.view.users.PoiCombo', {
         var me = this;
         
         Ext.apply(me, {
-            fieldLabel: 'Choose point of interest:',
+            fieldLabel: 'Choose type of point of interest:',
             store: me.initStore(),
             queryMode: 'local',
             labelCls: 'labelCombo',
             triggerAction : 'all',
             forceSelection: true,
-            width:350,
+            width:400,
             allowBlank: false,
             editable: false,
             value: "lodging",
