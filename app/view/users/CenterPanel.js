@@ -27,7 +27,7 @@ Ext.define('MyApp.view.users.CenterPanel', {
                 {
                     xtype: 'googleview',
                     mainView: me.mainView,
-                    anchor: '100% 100%'
+                    anchor: '100% 95%'
                 }
             ]
         });
