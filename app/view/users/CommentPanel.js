@@ -30,7 +30,6 @@ Ext.define('MyApp.view.users.CommentPanel', {
         );
 
         Ext.apply(me,{
-            width: 410,
             items: [
                 {
                     xtype: 'dataview',
