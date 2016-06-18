@@ -2,7 +2,7 @@
  * Created by Razvan on 28.04.2016.
  */
 Ext.define('MyApp.view.MainView', {
-    extend: 'Ext.panel.Panel',
+    extend: 'Ext.container.Container',
     alias: 'widget.mainview',
 
     requires: [
@@ -60,5 +60,17 @@ Ext.define('MyApp.view.MainView', {
             ]
         });
         me.callParent(arguments);
+    },
+
+    afterRender: function () {
+
+        var me = this;
+        me.callParent();
+
+        Ext.on('resize', function () {
+            me.height = Ext.getBody().getViewSize().height;
+            me.width = Ext.getBody().getViewSize().width;
+            me.updateLayout();
+        });
     }
 });
