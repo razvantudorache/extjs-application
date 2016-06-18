@@ -61,6 +61,7 @@ Ext.define('MyApp.view.users.RightPanel', {
                     xtype: 'dataview',
                     flex: 1.5,
                     tpl: me.template,
+                    scrollable: 'y',
                     store: me.initStore(),
                     itemSelector: 'div.item',
                     emptyText: me.emptyText,

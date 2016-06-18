@@ -15,7 +15,6 @@ Ext.define('MyApp.view.users.CommentArea', {
     initComponent: function () {
         var me = this;
         Ext.apply(me, {
-            layout: 'anchor',
             items: [
                 {
                     html: '<h2>'+ me.labelText.title +'</h2>',
