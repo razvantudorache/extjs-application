@@ -24,16 +24,6 @@ Ext.define('MyApp.view.users.CommentArea', {
                     xtype: 'commentpanel',
                     url: '/getComments'
 
-                },
-                {
-                    xtype: 'textarea',
-                    cls: 'textAreaComment',
-                    maxLength: 250,
-                    minLength: 3,
-                    minLengthText: 'The minimul length for this field is 3 character',
-                    maxLengthText: 'The maximum length for this field is 250 characters',
-                    width: '100%',
-                    height: '100%'
                 }
             ],
             dockedItems: [{
@@ -47,7 +37,7 @@ Ext.define('MyApp.view.users.CommentArea', {
                         handler: function () {
                             var me = this;
 
-                            var textArea = me.down('textarea');
+                            var textArea = me.down('commentpanel').down('textarea');
                             var comment = {
                                 commentDate: new Date(),
                                 commentText: textArea.getValue()

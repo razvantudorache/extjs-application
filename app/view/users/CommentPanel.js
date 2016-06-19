@@ -13,6 +13,8 @@ Ext.define('MyApp.view.users.CommentPanel', {
     },
     cls: 'commentPanel',
     emptyText: 'No comments',
+    scrollable: 'y',
+    height: 200,
 
     initComponent: function () {
         var me = this;
@@ -34,12 +36,20 @@ Ext.define('MyApp.view.users.CommentPanel', {
                 {
                     xtype: 'dataview',
                     tpl: me.template,
-                    height: 140,
                     store: me.initStore(),
                     itemSelector: 'div.item',
                     emptyText: me.emptyText,
-                    scrollable: 'y',
                     deferEmptyText: false
+                },
+                {
+                    xtype: 'textarea',
+                    cls: 'textAreaComment',
+                    maxLength: 250,
+                    minLength: 3,
+                    minLengthText: 'The minimul length for this field is 3 character',
+                    maxLengthText: 'The maximum length for this field is 250 characters',
+                    width: '100%',
+                    height: 100
                 }
             ]
         });
