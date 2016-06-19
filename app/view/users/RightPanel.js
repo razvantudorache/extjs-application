@@ -76,7 +76,7 @@ Ext.define('MyApp.view.users.RightPanel', {
                 {
                     flex:1,
                     xtype: 'commentarea',
-                    cls: 'rightPanelToolbar'
+                    cls: 'rightPanelCommentArea'
                 }
             ]
         });

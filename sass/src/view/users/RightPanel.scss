@@ -80,7 +80,7 @@
     }
   }
 
-  .rightPanelToolbar {
+  .rightPanelCommentArea {
     margin-right: 7px;
     margin-left: 7px;
     .textAreaComment {
@@ -100,18 +100,6 @@
       }
       .delimiterLine {
         color: #546E7A;
-      }
-    }
-    .mainTitle {
-      background-color: #64B5F6;
-      width: 100% !important;
-      .x-panel-body {
-        background-color: #64B5F6;
-      }
-      h2 {
-        font-size: 15px;
-        color: #E3F2FD;
-        margin-left: 10px;
       }
     }
   }
